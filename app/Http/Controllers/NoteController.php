@@ -1,0 +1,70 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\Note;
+
+class NoteController extends Controller
+{
+    public function index(){
+        $notes = Note::all();
+        return view('note.index', compact('notes'));
+    }
+
+    public function create(){
+        return view('note.create');
+    }
+
+    public function store(Request $request){
+
+        //una forma de guardar
+        $note = new Note;
+        $note->title = $request->title;
+        $note->description = $request->description;
+        $note->save();
+
+        // otra forma
+        // Note::create([
+        //     'title' => $request->title,
+        //     'description' => $request->description
+        // ]);
+
+        // otra
+        // Note::create($request->all());
+
+        return redirect()->route('note.index');
+    }
+
+    /*  en realidad estamos pasando la id
+        pero si ponemos como parametro Note
+        laravel ya ha hecho el Note::find($note)
+        y nos pasa la nota
+    */
+    public function edit(Note $note){
+
+        return view('note.edit', compact('note'));
+    }
+
+    public function update(Request $request, Note $note ){
+        // $note = Note::find($note);
+        // $note->title = $request->title;
+        // $note->description = $request->description;
+        // $note->save();
+
+        $note->update($request->all());
+        return redirect()->route('note.index');
+    }
+
+    public function show(Note $note){
+        return view('note.show', compact('note'));
+    }
+
+   // public function destroy(Request $request, Note $note){
+   //seria como arriba pero como no se utiliza $request se puede quitar
+
+    public function destroy(Note $note){
+        $note->delete();
+        return redirect()->route('note.index');
+    }
+}
