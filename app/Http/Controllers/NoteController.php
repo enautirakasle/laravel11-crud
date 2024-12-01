@@ -45,7 +45,7 @@ class NoteController extends Controller
         // otra
         Note::create($request->all());
 
-        return redirect()->route('note.index');
+        return redirect()->route('note.index')->with('success', 'Note created');
     }
 
     /*  en realidad estamos pasando la id
@@ -73,7 +73,7 @@ class NoteController extends Controller
         // ]);
 
         $note->update($request->all());
-        return redirect()->route('note.index');
+        return redirect()->route('note.index')->with('success', 'Note updated');
     }
 
     public function show(Note $note): View
@@ -87,6 +87,6 @@ class NoteController extends Controller
     public function destroy(Note $note): RedirectResponse
     {
         $note->delete();
-        return redirect()->route('note.index');
+        return redirect()->route('note.index')->with('danger', 'Note deleted');
     }
 }
