@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Note;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
-use App\Http\Request\NoteRequest;
+use App\Http\Requests\NoteRequest;
 
 class NoteController extends Controller
 {
