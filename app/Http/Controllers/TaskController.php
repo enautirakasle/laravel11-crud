@@ -40,15 +40,15 @@ class TaskController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Task $task)
+    public function show(Task $task): View
     {
-        //
+        return view('task.show', compact('task'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Task $task)
+    public function edit(Task $task): View
     {
         return view('task.edit', compact('task'));
     }
@@ -57,7 +57,7 @@ class TaskController extends Controller
      * Update the specified resource in storage.
      * UpdateTaskRequest
      */
-    public function update(UpdateTaskRequest $request, Task $task)
+    public function update(UpdateTaskRequest $request, Task $task): RedirectResponse
     {
         $task->update($request->all());
         return redirect()->route('task.index');
@@ -66,7 +66,7 @@ class TaskController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Task $task)
+    public function destroy(Task $task): RedirectResponse
     {
         $task->delete();
         return redirect()->route('task.index');
