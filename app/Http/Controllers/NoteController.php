@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Models\Note;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
-use App\Http\Requests\NoteRequest;
 
 class NoteController extends Controller
 {
@@ -21,7 +20,7 @@ class NoteController extends Controller
         return view('note.create');
     }
 
-    public function store(NoteRequest $request): RedirectResponse
+    public function store(Request $request): RedirectResponse
     {
 
         //una forma de guardar
@@ -59,7 +58,7 @@ class NoteController extends Controller
         return view('note.edit', compact('note'));
     }
 
-    public function update(NoteRequest $request, Note $note ): RedirectResponse
+    public function update(Request $request, Note $note ): RedirectResponse
     {
         // $note = Note::find($note);
         // $note->title = $request->title;
