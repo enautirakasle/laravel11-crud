@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NoteController;
+use App\Http\Controllers\TaskController;
 
 Route::get('/note', [NoteController::class, 'index'])->name('note.index');
 Route::get('/note/create', [NoteController::class, 'create'])->name('note.create');
@@ -11,3 +12,4 @@ Route::put('/note/update/{note}', [NoteController::class, 'update'])->name('note
 Route::get('/note/show/{note}', [NoteController::class, 'show'])->name('note.show');
 Route::delete('/note/destroy/{note}', [NoteController::class, 'destroy'])->name('note.destroy');
 
+Route::resource('task', TaskController::class);
