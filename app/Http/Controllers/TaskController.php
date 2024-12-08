@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
-use Illuminate\Http\Request;
 use App\Models\Task;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
@@ -32,7 +31,7 @@ class TaskController extends Controller
      * Store a newly created resource in storage.
      * StoreTaskRequest
      */
-    public function store(Request $request): RedirectResponse
+    public function store(StoreTaskRequest $request): RedirectResponse
     {
         Task::create($request->all());
         return redirect()->route('task.index');
@@ -58,7 +57,7 @@ class TaskController extends Controller
      * Update the specified resource in storage.
      * UpdateTaskRequest
      */
-    public function update(Request $request, Task $task)
+    public function update(UpdateTaskRequest $request, Task $task)
     {
         $task->update($request->all());
         return redirect()->route('task.index');
